@@ -230,10 +230,6 @@ However, you can override the configuration by placing your own `ecs.php` in the
 
 ---
 
-Here’s a clear and concise section you can add to the README to explain how users can provide a custom `ecs.php` config file:
-
----
-
 ## 🛠️ Custom `ecs.php` Configuration
 
 By default, **PhpCsFixer** comes with a preconfigured `ecs.php` configuration file located inside the package. However, you can easily override this configuration by placing your own `ecs.php` file at the root of your project.

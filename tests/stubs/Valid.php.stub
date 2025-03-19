@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JustCoded\PhpCsFixer\Tests\Code;
+
+use DateTime;
+
+class Valid
+{
+    public function __construct(
+        private readonly int $id,
+        private readonly string $email,
+        private readonly DateTime $dob,
+    ) {}
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getDob(): DateTime
+    {
+        return $this->dob;
+    }
+}

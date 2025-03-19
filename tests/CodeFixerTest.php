@@ -7,23 +7,41 @@ use JustCoded\PhpCsFixer\Services\CodeFixer;
 use Symfony\Component\Process\Process;
 
 beforeEach(function () {
+    $codeDir = __DIR__ . '/Code';
+
+    if (!is_dir($codeDir)) {
+        mkdir($codeDir, 0777, true);
+    }
+
     foreach (['Valid', 'InValid'] as $stub) {
         file_put_contents(
-            __DIR__ . "/Code/{$stub}.php",
+            "{$codeDir}/{$stub}.php",
             file_get_contents(__DIR__ . "/stubs/{$stub}.php.stub"),
         );
     }
 });
 
+
 afterEach(function () {
+    $codeDir = __DIR__ . '/Code';
+
     foreach (['Valid', 'InValid'] as $stub) {
-        unlink(__DIR__ . "/Code/{$stub}.php");
+        $file = "{$codeDir}/{$stub}.php";
+
+        if (file_exists($file)) {
+            unlink($file);
+        }
     }
 
-    if (file_exists(__DIR__ . '/Code/ecs.php')) {
-        unlink(__DIR__ . '/Code/ecs.php');
+    if (file_exists("{$codeDir}/ecs.php")) {
+        unlink("{$codeDir}/ecs.php");
+    }
+
+    if (is_dir($codeDir)) {
+        rmdir($codeDir);
     }
 });
+
 
 it('can instantiate CodeFixer with default config', function () {
     $fixer = new CodeFixer();

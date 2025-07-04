@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.2] - 2025-06-04
+
+### 🐞 Fixes
+  - Fix the error when custom `ecs_path` is not specified.
+
+
 ## [v0.1.1] - 2025-06-04
 
 ### ✨ Features 

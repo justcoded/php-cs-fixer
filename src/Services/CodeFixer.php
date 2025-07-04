@@ -74,8 +74,8 @@ class CodeFixer
     protected function getEcsConfigPath(string $basePath, ?string $ecsConfigPath = null): string
     {
         return match (true) {
-            file_exists($ecsConfigPath) => realpath($ecsConfigPath),
-            file_exists("{$basePath}/{$ecsConfigPath}") => realpath("{$basePath}/{$ecsConfigPath}"),
+            isset($ecsConfigPath) && file_exists($ecsConfigPath) => realpath($ecsConfigPath),
+            isset($ecsConfigPath) && file_exists("{$basePath}/{$ecsConfigPath}") => realpath("{$basePath}/{$ecsConfigPath}"),
             file_exists("{$basePath}/ecs.php") => realpath("{$basePath}/ecs.php"),
             default => realpath(__DIR__ . "/../../config/ecs.php"),
         };

@@ -43,10 +43,11 @@ class CodeFixer
         ?Closure $callback = null,
     ): CodeFixerResult {
         $tty = $config['tty'] ?? $this->config['tty'];
+        $ecsConfigPath = $config['ecs_path'] ?? $this->config['ecs_path'] ?? null;
         $basePath = Utils::getAppBasePath();
-        $ecsConfigPath = $this->getEcsConfigPath($basePath);
+        $ecsConfigPath = $this->getEcsConfigPath($basePath, $ecsConfigPath);
 
-        $paths = match(true) {
+        $paths = match (true) {
             is_null($path) => [$basePath],
             is_array($path) => $path,
             default => [$path],
@@ -70,10 +71,13 @@ class CodeFixer
         );
     }
 
-    protected function getEcsConfigPath(string $basePath): string
+    protected function getEcsConfigPath(string $basePath, ?string $ecsConfigPath = null): string
     {
-        return file_exists("{$basePath}/ecs.php")
-            ? realpath("{$basePath}/ecs.php")
-            : realpath(__DIR__ . "/../../config/ecs.php");
+        return match (true) {
+            file_exists($ecsConfigPath) => realpath($ecsConfigPath),
+            file_exists("{$basePath}/{$ecsConfigPath}") => realpath("{$basePath}/{$ecsConfigPath}"),
+            file_exists("{$basePath}/ecs.php") => realpath("{$basePath}/ecs.php"),
+            default => realpath(__DIR__ . "/../../config/ecs.php"),
+        };
     }
 }

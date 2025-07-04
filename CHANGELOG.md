@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.1.1] - 2025-06-04
+
+### ✨ Features 
+ - **Allow to specify `ecs.php` config file path**
+   - You can now pass `ecs_path` config param to `new CodeFixer(['ecs_path' => 'path'])`
+   - Override on the fly via  `$fixer->{fix|check|execute}(['ecs_path' => 'path'])`
+
 ## [v0.1.0] - 2025-03-19
 
 🚀 **Initial Release!**

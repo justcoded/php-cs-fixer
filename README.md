@@ -232,10 +232,11 @@ However, you can override the configuration by placing your own `ecs.php` in the
 
 ## 🛠️ Custom `ecs.php` Configuration
 
-By default, **PhpCsFixer** comes with a preconfigured `ecs.php` configuration file located inside the package. However, you can easily override this configuration by placing your own `ecs.php` file at the root of your project.
+By default, **PhpCsFixer** comes with a preconfigured `ecs.php` configuration file located inside the package. However, you can easily override this configuration by placing your own `ecs.php` file at the root of your project or specify `ecs_path` config param.
 
 **How it works:**
 
+- If a `ecs.php` file exists in specified `ecs_path` it will be automatically used.
 - If a `ecs.php` file exists in your project's root directory, it will be automatically used when running `check` or `fix` commands (both CLI and programmatic usage).
 - If no custom config is found, the package's default configuration will be applied.
 
